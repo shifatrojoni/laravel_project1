@@ -8,21 +8,58 @@
   <div class="row">
      <div class="col-sm-12">
       <h2>Contact Us</h2>
+
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
+
+  {{-- Success Data --}}
+  @if (session('msg'))
+    <div class="alert alert-success">
+        {{ session('msg') }}
+    </div>
+@endif
+
       <form method="post" action="contact">
         @csrf
         <div class="mb-3 mt-3">
+          <label for="email" class="form-label">Name:</label>
+          <input type="name" class="form-control" id="email" placeholder="Enter name" name="name" value="{{ old('name') }}">
+          @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        </div>
+        <div class="mb-3 mt-3">
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+          <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
+          @error('email')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
-        <div class="mb-3">
-          <label for="pwd" class="form-label">Password:</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        <div class="mb-3 mt-3">
+          <label for="email" class="form-label">Subject:</label>
+          <input type="subject" class="form-control" id="email" placeholder="Enter subject" name="subject" value="{{ old('subject') }}">
+          @error('subject')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
-        <div class="form-check mb-3">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="remember"> Remember me
-          </label>
-        </div>
+        
+        <div class="mb-3 mt-3">
+          <label for="email" class="form-label">Message:</label>
+          <textarea name="message" id="" cols="30" rows="10" class="form-control">{{ old('message' )}}</textarea>
+          @error('message')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+
+
+        
+        
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
    
