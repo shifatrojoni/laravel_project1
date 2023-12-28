@@ -9,7 +9,8 @@ class FeedbackController extends Controller
 {
    public function Feedback(){
      $feedback = Feedback::all();
-     $sadid['']
+     $sadid['messages'] = $feedback;
+     return view('feedbackList',$sadid);
 
    }
 }

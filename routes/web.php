@@ -22,3 +22,8 @@ Route::get('/about',[HomeController::class,'about']);
 Route::get('/contact',[HomeController::class,'contact']);
 Route::post('contact',[HomeController::class,'store']);
 Route::get('contact/list',[HomeController::class,'contactList']);
+Route::get('contact/delete/{mid}',[HomeController::class,'delete']);
+Route::get('contact/edit/{mid}',[HomeController::class,'edit']);
+Route::post('contact/update/{mid}',[HomeController::class,'update']);
+Route::get('feedback/list',[HomeController::class,'feedbackList']);
+
